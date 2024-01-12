@@ -1,0 +1,91 @@
+<!DOCTYPE html> // 22049221  SARABJEET SINGH
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 1</title>
+    <style>
+        table, td {
+            border: 1px solid black;
+        }
+
+        #messageLabel {
+            display: none; /* Hide the message by default */
+        }
+    </style>
+</head>
+<body>
+    <table id="x">
+        <!-- Initialize the table with rows 1 to 5 -->
+        <tr>
+            <td>Row1 Col1</td>
+            <td>Row1 Col2</td>
+        </tr>
+        <tr>
+            <td>Row2 Col1</td>
+            <td>Row2 Col2</td>
+        </tr>
+        <tr>
+            <td>Row3 Col1</td>
+            <td>Row3 Col2</td>
+        </tr>
+        <tr>
+            <td>Row4 Col1</td>
+            <td>Row4 Col2</td>
+        </tr>
+        <tr>
+            <td>Row5 Col1</td>
+            <td>Row5 Col2</td>
+        </tr>
+    </table>
+
+    <button onclick="insertRow()"><b>Insert Row</b></button>
+    <button onclick="deleteRow()"><b>Delete Row</b></button>
+    <button onclick="deleteRowFromBottom()"><b>Delete Row from Bottom</b></button>
+    <p id="messageLabel"><b><u>Message: No more rows to delete</u></b></p>
+
+    <script>
+        var counter = 6; // Start counter from 6 for new rows
+
+        function insertRow() {
+            var x = document.getElementById("x");
+            var row = x.insertRow(-1);
+
+            var cell1 = row.insertCell(0);
+            cell1.innerHTML = "Row" + counter + " Col1";
+
+            var cell2 = row.insertCell(1);
+            cell2.innerHTML = "Row" + counter + " Col2";
+
+            counter++;
+
+            updateMessage();
+        }
+
+        function deleteRow() {
+            var x = document.getElementById("x");
+            x.deleteRow(0);
+
+            updateMessage();
+        }
+
+        function deleteRowFromBottom() {
+            var x = document.getElementById("x");
+            x.deleteRow(x.rows.length - 1);
+
+            updateMessage();
+        }
+
+        function updateMessage() {
+            var x = document.getElementById("x");
+            var messageLabel = document.getElementById("messageLabel");
+
+            if (x.rows.length === 0) {
+                messageLabel.style.display = "block"; // Show the message
+            } else {
+                messageLabel.style.display = "none"; // Hide the message
+            }
+        }
+    </script>
+</body>
+</html>
